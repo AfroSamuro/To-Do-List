@@ -4,3 +4,86 @@
     box-sizing: border-box;
 }
 
+.plate {
+    margin: 50px auto 10px;
+    width: 336px;
+    font-size: 14px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.head {
+    background-color: rgb(245, 211, 20);
+    height: 28px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 17px 28px 19px;
+}
+
+.sort {
+    display: flex;
+    justify-content: end;
+    padding-top: 12px;
+    width: 100%;
+}
+
+.button_sort_down {
+    background-image: url(../img/List_Down_Gray.svg);
+    height: 14px;
+    width: 26px;
+    border: none
+}
+
+.button_sort_down:hover {
+    background-image: url(../img/List_Down_Black.svg);
+}
+
+.list_itself {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid rgb(102, 102, 102);
+    border-radius: 10px;
+    padding: 10px 26px;
+}
+
+.new_row {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new_row:not(:first-child) {
+    margin-top: 10px;
+}
+
+input {
+    border: none;
+}
+
+.delete_button {
+    background-image: url(../img/X_gray.svg);
+    border: none;
+    width: 20px;
+    height: 20px;
+}
+
+.delete_button:hover {
+    background-image: url(../img/X_purple.svg);
+}
+
+.add_button {
+    margin-top: 18px;
+    background-image: url(../img/Add_Button.svg);
+    width: 150px;
+    height: 42px;
+    border: none;
+}
