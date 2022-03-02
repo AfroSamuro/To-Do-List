@@ -97,8 +97,49 @@ input {
 
 .add_button {
     margin-top: 18px;
-    background-image: url(../img/Add_Button.svg);
     width: 150px;
     height: 42px;
     border: none;
 }
+
+.add_btn {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    color: rgb(240, 240, 240);
+    background-color: rgb(128, 39, 212);
+    border-radius: 24px;
+    height: 44px;
+}
+
+.add_btn_text {
+    font-size: 20px;
+    width: 130px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    transition: color 450ms;
+}
+
+.add_btn_plus {
+    font-size: 16px;
+    color: rgb(240, 240, 240);
+    background-color: rgb(165, 70, 255);
+    width: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: 500;
+    transition: transform 1s, color 1s, font-size 1s;
+}
+
+.add_btn:hover .add_btn_plus {
+    transform: translateX(50px) rotate(180deg);
+    color: rgb(255, 196, 0);
+    font-size: 30px;
+}
+
+.add_btn:hover .add_btn_text {
+    color:rgb(128, 39, 212)
+}
+
