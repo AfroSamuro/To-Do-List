@@ -1,3 +1,5 @@
+'use strict';
+
 const ORDER_ASC = 'ASC';
 const ORDER_DESC = 'DESC';
 
@@ -10,46 +12,60 @@ class ToDoItem {
         this.id = id;
         this.text = text;
     }
-    
+
     setText = (text) => this.text = text
 
 }
 
 class ToDoList {
     currentId = 0;
-    list = [];
+    order = ORDER_ASC;
+    arr = [];
 
-    add (text) {
+    add(text) {
         const item = new ToDoItem(this.currentId++, text);
 
-        this.list.push(item)
+        this.arr.push(item)
 
         return item;
     }
 
-    change (id ,newText) {
-        this.list.find((item) => id === item.id).setText(newText)
+    change(id, newText) {
+        this.arr.find((item) => id === item.id).setText(newText)
     }
 
-    remove (id) {
-        this.list = this.list.filter((item) => id !== item.id)
+    remove(id) {
+        this.arr = this.arr.filter((item) => id !== item.id)
     }
+
+    sortASC() {
+     this.arr.sort((a,b) => a.text < b.text ? 1 : -1)
+    }
+
+    sortDESC() {
+        this.arr.sort((a,b) => a.text < b.text ? -1 : 1)
+    }
+
+    switchOrder =  () => this.order = (this.order === ORDER_ASC) ? ORDER_DESC : ORDER_ASC;
 }
 
 class ToDoView {
     list = new ToDoList();
     addButton = document.querySelector('.add_button');
     container = document.querySelector('.list_itself');
+    sortButton = document.querySelector('.button_sort_down');
 
     constructor() {
-        this.addButton.addEventListener('click', this.onClickAddButton)
-        this.onClickAddButton()
+        this.addButton.addEventListener('click', this.onClickAddButton);
+        this.onClickAddButton();
+        this.sortButton.addEventListener('click', this.onClickSort);
+        this.onClickSort();
     }
 
     creatToDo(todo) {
         let container = document.createElement('div');
         let input = document.createElement('input');
-        let button = document.createElement('button'); 
+        let button = document.createElement('button');
 
         container.classList.add('new_row');
         button.classList.add('delete_button')
@@ -59,7 +75,7 @@ class ToDoView {
         });
 
         button.addEventListener('click', () => {
-           if(this.list.list.length === 1) return
+            if (this.list.arr.length === 1) return
             this.list.remove(todo.id)
             container.remove()
         });
@@ -74,6 +90,29 @@ class ToDoView {
         this.container.append(this.creatToDo(item))
     }
 
+    onClickSort = () => {
+        this.container.innerHTML = ''
+
+        // this.list.arr.forEach(todo => {
+        //     const rerenderItem = this.creatToDo(todo)
+        //     this.container.append(rerenderItem)
+        // })
+
+        this.list.order === ORDER_ASC ? this.list.sortASC() : this.list.sortDESC()
+
+        this.list.switchOrder()
+
+        this.container.append(...this.list.arr.map(todo => this.creatToDo(todo)))   
+        
+        // this.list.order === ORDER_ASC ? 
+        this.list.order === ORDER_ASC ? this.sortButton.classList.replace('button_sort_down', 'button_sort_up') : this.sortButton.classList.replace('button_sort_up', 'button_sort_down')
+    }
+
+
 }
 
 const view = new ToDoView()
+
+
+
+

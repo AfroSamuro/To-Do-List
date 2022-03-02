@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+button {
+    background-color: transparent;
+}
+
 .plate {
     margin: 50px auto 10px;
     width: 336px;
@@ -36,12 +40,23 @@
 .button_sort_down {
     background-image: url(../img/List_Down_Gray.svg);
     height: 14px;
-    width: 26px;
+    width: 24px;
     border: none
 }
 
 .button_sort_down:hover {
     background-image: url(../img/List_Down_Black.svg);
+}
+
+.button_sort_up {
+    background-image: url(../img/List_Up_Gray.svg);
+    height: 14px;
+    width: 24px;
+    border: none
+}
+
+.button_sort_up:hover {
+    background-image: url(../img/List_Up_Black.svg);
 }
 
 .list_itself {
