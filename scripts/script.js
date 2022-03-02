@@ -40,14 +40,14 @@ class ToDoList {
     }
 
     sortASC() {
-     this.arr.sort((a,b) => a.text < b.text ? 1 : -1)
+        this.arr.sort((a, b) => a.text < b.text ? 1 : -1)
     }
 
     sortDESC() {
-        this.arr.sort((a,b) => a.text < b.text ? -1 : 1)
+        this.arr.sort((a, b) => a.text < b.text ? -1 : 1)
     }
 
-    switchOrder =  () => this.order = (this.order === ORDER_ASC) ? ORDER_DESC : ORDER_ASC;
+    switchOrder = () => this.order = (this.order === ORDER_ASC) ? ORDER_DESC : ORDER_ASC;
 }
 
 class ToDoView {
@@ -58,7 +58,7 @@ class ToDoView {
 
     constructor() {
         this.addButton.addEventListener('click', this.onClickAddButton);
-        this.onClickAddButton();
+        this.render();
         this.sortButton.addEventListener('click', this.onClickSort);
     }
 
@@ -85,9 +85,17 @@ class ToDoView {
         return container;
     }
 
+    render() {
+        let item = this.list.add('');
+        this.container.append(this.creatToDo(item));
+    }
+
     onClickAddButton = () => {
-        let item = this.list.add('')
-        this.container.append(this.creatToDo(item))
+        this.render()
+        document.querySelector('.add_btn_plus').classList.add('add_btn_click')
+        setTimeout(() => {
+            document.querySelector('.add_btn_plus').classList.remove('add_btn_click')
+        }, 500)
     }
 
     onClickSort = () => {
@@ -97,11 +105,11 @@ class ToDoView {
 
         this.list.switchOrder()
 
-        this.container.append(...this.list.arr.map(todo => this.creatToDo(todo))) 
-        
-        if(this.list.order !== ORDER_NONE) this.sortButton.classList.toggle('button_sort_up');
+        this.container.append(...this.list.arr.map(todo => this.creatToDo(todo)))
 
+        if (this.list.order !== ORDER_NONE) this.sortButton.classList.toggle('button_sort_up');
         // this.list.order === ORDER_ASC ? this.sortButton.classList.replace('button_sort_down', 'button_sort_up') : this.sortButton.classList.replace('button_sort_up', 'button_sort_down')
+
     }
 
 

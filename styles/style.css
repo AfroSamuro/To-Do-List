@@ -130,7 +130,7 @@ input {
     align-items: center;
     border-radius: 50%;
     font-weight: 500;
-    transition: transform 1s, color 1s, font-size 1s;
+    transition: all .3s linear;
 }
 
 .add_btn:hover .add_btn_plus {
@@ -141,5 +141,9 @@ input {
 
 .add_btn:hover .add_btn_text {
     color:rgb(128, 39, 212)
+}
+
+.add_btn_click {
+    transform: translateX(106px) rotate(180deg);
 }
 
