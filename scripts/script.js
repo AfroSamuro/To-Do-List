@@ -2,6 +2,7 @@
 
 const ORDER_ASC = 'ASC';
 const ORDER_DESC = 'DESC';
+const ORDER_NONE = 'NONE';
 
 
 class ToDoItem {
@@ -19,7 +20,7 @@ class ToDoItem {
 
 class ToDoList {
     currentId = 0;
-    order = ORDER_ASC;
+    order = ORDER_NONE;
     arr = [];
 
     add(text) {
@@ -53,13 +54,12 @@ class ToDoView {
     list = new ToDoList();
     addButton = document.querySelector('.add_button');
     container = document.querySelector('.list_itself');
-    sortButton = document.querySelector('.button_sort_down');
+    sortButton = document.querySelector('.button_sort');
 
     constructor() {
         this.addButton.addEventListener('click', this.onClickAddButton);
         this.onClickAddButton();
         this.sortButton.addEventListener('click', this.onClickSort);
-        this.onClickSort();
     }
 
     creatToDo(todo) {
@@ -93,19 +93,15 @@ class ToDoView {
     onClickSort = () => {
         this.container.innerHTML = ''
 
-        // this.list.arr.forEach(todo => {
-        //     const rerenderItem = this.creatToDo(todo)
-        //     this.container.append(rerenderItem)
-        // })
-
         this.list.order === ORDER_ASC ? this.list.sortASC() : this.list.sortDESC()
 
         this.list.switchOrder()
 
-        this.container.append(...this.list.arr.map(todo => this.creatToDo(todo)))   
+        this.container.append(...this.list.arr.map(todo => this.creatToDo(todo))) 
         
-        // this.list.order === ORDER_ASC ? 
-        this.list.order === ORDER_ASC ? this.sortButton.classList.replace('button_sort_down', 'button_sort_up') : this.sortButton.classList.replace('button_sort_up', 'button_sort_down')
+        if(this.list.order !== ORDER_NONE) this.sortButton.classList.toggle('button_sort_up');
+
+        // this.list.order === ORDER_ASC ? this.sortButton.classList.replace('button_sort_down', 'button_sort_up') : this.sortButton.classList.replace('button_sort_up', 'button_sort_down')
     }
 
 
